@@ -1,7 +1,9 @@
 import "./App.css";
-import { useState} from "react";
+
+import React, {useState} from "react";
 import Search from "./Components/Search";
 import Main from "./Components/Main";
+// import {Route} from "react-router-dom"
 // import {getAll} from "./Utils/BooksAPI"
 
 function App() {
@@ -10,6 +12,7 @@ function App() {
   
 return(
   <>
+
    {showSearchPage ? ( <Search searchState = {showSearchPage} setSearchState = {setShowSearchpage}/>) : 
    ( 
     <>

@@ -5,11 +5,12 @@ import { update } from '../Utils/BooksAPI';
 
 const Book = ({book , setState}) => {
 
+
   const [shelfState,setShelfState] = useState(book.shelf);
 
   useEffect(() => {
+    book.shelf = shelfState;
     update(book, shelfState).then(res =>{
-
     }).catch(err =>{
       console.log(err)
     })
@@ -31,7 +32,8 @@ const Book = ({book , setState}) => {
       }}
     ></div>
     <div className="book-shelf-changer">
-      <select value = {shelfState} defaultChecked={shelfState} onChange={(e) =>{
+      <select defaultValue = {shelfState}  onChange={(e) =>{
+        
         setShelfState(e.target.value);
         setTimeout(() => {
           setState(shelfState + book.id)

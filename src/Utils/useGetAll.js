@@ -10,14 +10,12 @@ export const useGetAll = (flip) => {
     getAll().then(res =>{
 
           setState({ data:res, loading: false });
-          console.log(res);
         }).catch(err=>{
           console.log(err)
         })
 
     
       },[flip , setState])
-    console.log(flip)
 
   return state;
 };

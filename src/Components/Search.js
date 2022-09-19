@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useFetch } from '../Utils/useFetch';
 import Book from './Book';
+import useGetAll from '../Utils/useGetAll';
 const Search = ({searchState ,setSearchState}) => {
 
 const [query , setQuery] = useState("");
@@ -8,9 +9,8 @@ const [state , setState] = useState("")
 const handleChange = (e) =>{
   setQuery(e.target.value.trim().toLowerCase())
 }
-  const {data , loading}=useFetch(query , state) 
+  const {searchData , searchLoading}=useFetch(query , state) 
 
- 
 
 
   return (
@@ -36,7 +36,7 @@ const handleChange = (e) =>{
         <div className="search-books-results">
           <ol className="books-grid">
 
-          {loading ? <></> : (data.length > 0) ? data.map((book)=>{
+          {searchLoading ? <></> : (searchData.length > 0) ? searchData.map((book)=>{
             return <li key={book.id}><Book book ={book } setState={setState} /></li>
             // console.log(book)
           }) : <></>}

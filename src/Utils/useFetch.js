@@ -1,25 +1,43 @@
 
 import { useEffect, useState } from "react";
 import { search} from "./BooksAPI";
+import useGetAll from "./useGetAll";
 
 export const useFetch = (query , bookState) => {
-  const [state, setState] = useState({ data:[], loading: true });
-  
-    
-  
-  useEffect(()=>{
-    if (query !== "") {
-    search(query).then(res =>{
+  const [state, setState] = useState({ searchData:[], searchLoading: true });
 
-          setState({ data:res, loading: false });
+  let [flip , setflip] = useState([]);
+  const {data , loading} = useGetAll(flip); 
+  
+
+
+  useEffect(()=>{
+    
+    if (query !== "") { 
+    search(query).then(res =>{
+      const newBooks = res.map((book)=>{
+        let booky = book;
+        for (let b of data) {
+          if (book.id === b.id) {
+            booky = b;
+          }
+        }
+        return booky
+      })   
+
+          setState({ searchData:newBooks, searchLoading: false });
         }).catch(err=>{
           console.log(err)
         })
 
     }else{
-        setState({ data:[], loading: true })
+        setState({ searchData:[], searchLoading: true })
     }
       },[query , bookState])
+
+
+
+      
 
   return state;
 
