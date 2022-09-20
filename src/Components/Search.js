@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useFetch } from '../Utils/useFetch';
 import Book from './Book';
-import useGetAll from '../Utils/useGetAll';
-const Search = ({searchState ,setSearchState}) => {
+import { Link } from 'react-router-dom';
+const Search = () => {
 
 const [query , setQuery] = useState("");
 const [state , setState] = useState("")
@@ -18,12 +18,9 @@ const handleChange = (e) =>{
    
       <div className="search-books">
         <div className="search-books-bar">
-          <a
-            className="close-search"
-            onClick={() => setSearchState(!searchState)}
-          >
+          <Link exact to="/" className="close-search">
             Close
-          </a>
+          </Link>
           <div className="search-books-input-wrapper">
             <input
               type="text"

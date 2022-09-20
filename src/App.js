@@ -3,7 +3,7 @@ import "./App.css";
 import React, {useState} from "react";
 import Search from "./Components/Search";
 import Main from "./Components/Main";
-// import {Route} from "react-router-dom"
+import {Route , Routes} from "react-router-dom"
 // import {getAll} from "./Utils/BooksAPI"
 
 function App() {
@@ -11,21 +11,11 @@ function App() {
   
   
 return(
-  <>
+  <Routes>
+    <Route path="/" element={<Main searchState = {showSearchPage} setSearchState = {setShowSearchpage}/>}/>
 
-   {showSearchPage ? ( <Search searchState = {showSearchPage} setSearchState = {setShowSearchpage}/>) : 
-   ( 
-    <>
-
-
-
-
-   <Main searchState = {showSearchPage} setSearchState = {setShowSearchpage}/>
-   </>
-   )}
-  
- 
-  </>
+    <Route path="/Search" element={<Search searchState = {showSearchPage} setSearchState = {setShowSearchpage} />}/>
+    </Routes>
 )
 
 }

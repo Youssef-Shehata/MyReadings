@@ -2,7 +2,8 @@ import React from 'react'
 import Section from './Section'
 import {  useState } from 'react'
 import useGetAll from '../Utils/useGetAll'
-const Main = ({searchState ,setSearchState}) => {
+import { Link } from 'react-router-dom'
+const Main = () => {
 
   let [flip , setState] = useState('')
   let {data , loading}=useGetAll(flip) 
@@ -29,7 +30,7 @@ const Main = ({searchState ,setSearchState}) => {
       </div>
     </div>
     <div className="open-search">
-      <a onClick={() => setSearchState(!searchState)}>Add a book</a>
+      <Link to="/Search">Add a book</Link>
     </div>
   </>
   )

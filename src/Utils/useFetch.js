@@ -17,6 +17,7 @@ export const useFetch = (query , bookState) => {
     search(query).then(res =>{
       const newBooks = res.map((book)=>{
         let booky = book;
+        booky.shelf= "none"
         for (let b of data) {
           if (book.id === b.id) {
             booky = b;
